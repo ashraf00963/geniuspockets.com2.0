@@ -1,0 +1,85 @@
+.auth-page {
+    font-family: 'Segoe UI';
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.auth-container {
+    border: 1px solid #414141;
+    border-radius: 5px;
+    background-color: #fffd7971;
+    width: fit-content;
+    padding: 20px;
+    padding-bottom: 25px;
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.auth-header-logo {
+    max-width: 100%;
+    width: 250px;
+    margin: 1rem 0;
+    margin-top: 0.5rem;
+}
+
+.lock-logo {
+    max-width: 100%;
+    width: 200px;
+}
+
+.auth-container h2 {
+    margin: 1rem 2rem;
+}
+
+.auth-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    width: 100%;
+}
+
+.auth-container form input {
+    border: 1px solid #000;
+    border-radius: 2px;
+    padding: 8px 15px;
+    font-family: "Josefin Sans", sans-serif;
+    font-size: 1rem;
+}
+
+.auth-submit-btn {
+    font-family: "Josefin Sans", sans-serif;
+    padding: 8px;
+    margin-top: 0.2rem;
+    background-color: #006b09;
+    border: 1px solid #000;
+    box-shadow: 0px 2px 2px 0.5px #000;
+    color: #fff;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.auth-submit-btn:active {
+    box-shadow: none;
+}
+
+.reset-password {
+    font-size: 0.8rem;
+    margin: 0;
+    color: #006b09;
+    cursor: pointer;
+}
+
+.Sign-up_quest {
+    font-size: 0.8rem;
+    margin: 0.5rem 0;
+}
+
+.Sign-up_span {
+    color: #006b09;
+    cursor: pointer;
+}
