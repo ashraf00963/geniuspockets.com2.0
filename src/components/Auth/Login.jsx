@@ -18,15 +18,27 @@ const Login = () => {
         dispatch(clearMessages());
       }, 3000);
     }
-
+  
+    // Ensure you navigate only when the user is logged in
     if (user) {
-      navigate('/dashboard');
+      navigate('/income');
     }
-  }, [message, error, user, dispatch, navigate]);
-
-  const handleSubmit = (e) => {
+  }, [message, error, user, dispatch, navigate]);  
+  
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch(loginUser({ email, password }));
+    const resultAction = await dispatch(loginUser({ email, password }));
+    
+    // Check if the loginUser action was fulfilled successfully
+    if (loginUser.fulfilled.match(resultAction)) {
+      const authToken = resultAction.payload.auth_token;
+      localStorage.setItem('auth_token', authToken);
+      // Navigate to income only on successful login
+      navigate('/income');
+    } else {
+      // Log the error and show the error message
+      console.error("Login failed:", resultAction.payload);
+    }
   };
 
   const easyNavi = (i) => {

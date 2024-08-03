@@ -1,0 +1,38 @@
+.analysis-tips {
+    margin: 3rem 6rem;
+    background-color: #FBFAE8;
+    padding: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.analysis-tips h2, .salary-analysis h2 {
+    margin: 0.5rem;
+    margin-top: 1rem;
+    margin-bottom: 0;
+    color: #36A2EB;
+}
+
+.salary-analysis h4{
+    color: #FF6384;
+    margin: 0.5rem;
+    margin-left: 1rem;
+    text-decoration: underline;
+}
+
+.salary-analysis ul {
+    margin-top: 0.5rem;
+}
+
+.tips ul {
+    margin-top: 0.5rem;
+    padding:  0.5rem 1rem;
+    padding-left: 2rem;
+    list-style: decimal;
+    background-color: #fff;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.tips li {
+    margin: 0.4rem 0;
+}

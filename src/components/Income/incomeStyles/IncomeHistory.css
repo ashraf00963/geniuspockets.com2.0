@@ -1,0 +1,135 @@
+/* src/components/incomeStyles/IncomeHistory.css */
+
+.income-history {
+  margin: 2rem 6rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.income-history h2 {
+  padding: 15px;
+  background-color: #f9f9f9;
+  margin: 0;
+  border: 1px solid #ddd;
+}
+
+.income-history table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0;
+}
+
+.income-history th,
+.income-history td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.income-history th {
+  background-color: #f9f9f9;
+  font-weight: bold;
+  color: #333;
+}
+
+.income-history tr {
+    background-color: #ffffff;
+}
+
+.income-history tr:hover {
+  background-color: #ccc;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.income-history td {
+  color: #2f8001;
+}
+
+.income-history tr:last-child td {
+  border-bottom: none;
+}
+
+/* Modal styles */
+.income-edit-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.income-edit-modal .modal-content {
+  background: #fff;
+  padding: 20px;
+  width: 400px;
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.income-edit-modal h3 {
+  margin-top: 0;
+  font-size: 20px;
+}
+
+.income-edit-modal form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.income-edit-modal form label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.income-edit-modal input[type='number'],
+.income-edit-modal select {
+  padding: 5px;
+  font-size: 16px;
+  width: 60%;
+}
+
+.income-edit-modal .modal-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.income-edit-modal button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #fff;
+}
+
+.income-edit-modal button:nth-child(1) {
+  background-color: #4CAF50; /* Green for Update */
+}
+
+.income-edit-modal button:nth-child(2) {
+  background-color: #f44336; /* Red for Delete */
+}
+
+.income-edit-modal button:nth-child(3) {
+  background-color: #888; /* Gray for Close */
+}
+
+.income-edit-modal button:hover {
+  opacity: 0.9;
+}
+
+.income-edit-modal button:active {
+  transform: scale(0.98);
+}

@@ -1,0 +1,14 @@
+.income-page {
+    margin: 1rem 6rem;
+    margin-bottom: 0;
+    font-family: "Josefin Sans", sans-serif;
+    background-color: #4b4a38;
+    padding-bottom: 1rem;
+}
+
+.income-page h1 {
+    text-align: center;
+    padding: 5px 0;
+    padding-top: 8px;
+    background-color: #FBFAE8;
+}

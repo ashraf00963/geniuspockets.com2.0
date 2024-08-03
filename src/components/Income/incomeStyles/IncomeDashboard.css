@@ -1,0 +1,76 @@
+.income-dashboard {
+    display: flex;
+    flex-direction: column;
+    font-family: "Josefin Sans", sans-serif;
+    background-color: #FBFAE8;
+    padding: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 2rem 6rem;
+    justify-content: center;
+}
+
+.income-dashboard h2 {
+    margin: 0.5rem 0;
+}
+
+.income-filters {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0.5rem 0;
+}
+
+.navigation-controls button {
+    margin-right: 0.4rem;  
+    border: none;
+    border-radius: 100%;
+    padding-top: 5px;
+    background-color: #000;
+    color: #fff;
+    cursor: pointer;
+}
+
+.navigation-controls span {
+    margin-right: 0.4rem;
+    font-family: "Josefin Sans", sans-serif;
+}
+
+.filter-controls * {
+    margin-right: 0.2rem;
+    border: 1px solid #000;
+    font-family: "Josefin Sans", sans-serif;
+    padding-top: 4px;
+    outline: none;
+}
+
+.charts-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; 
+    
+}
+
+.pie-chart-card {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: start;
+    margin-bottom: 10px;
+}   
+
+.pie-chart-card * {
+    max-width: 350px;
+    max-height: 250px; 
+}
+
+.bar-chart-card {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.bar-chart-card * {
+    max-width: 80%;
+    max-height: 400px;
+}

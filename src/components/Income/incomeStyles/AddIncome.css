@@ -1,0 +1,77 @@
+.add-income {
+    font-family: "Josefin Sans", sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 4rem 0;
+}
+
+.add-income-con {
+    background-color: #FBFAE8;
+    padding: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.add-income-con img {
+    width: 120px;
+}
+
+.form-group {
+    font-family: "Josefin Sans", sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0.5rem 0;
+}
+
+.form-group label {
+    font-size: 0.9rem;
+    margin: 0.1rem 0;
+}
+
+.form-group input {
+    padding: 5px 8px;
+    outline: none;
+}
+
+.form-group select {
+    font-family: "Josefin Sans", sans-serif;
+    padding: 5px;
+    outline: none;
+}
+
+.form-group-checkbox {
+    display: flex;
+    justify-content: space-between;
+    margin: 0.5rem 0;
+    margin-top: 0.8rem;
+    font-size: 0.9rem;
+    color: #01878b;
+}
+
+.form-group-checkbox input {
+    cursor: pointer;
+}
+
+.add-income button {
+    font-family: "Josefin Sans", sans-serif;
+    width: 100%;
+    padding: 5px 8px;
+    padding-top: 9px;
+    cursor: pointer;
+    border: none;
+    background-color: #006b09;
+    color: #fff;
+    box-shadow: 0 2px 2px 1px #000;
+}
+
+.add-income button:active {
+    margin-top: 0.1rem;
+    box-shadow: none;
+}
