@@ -1,0 +1,17 @@
+.last-active-pockets {
+    margin: 1rem 0;
+    padding: 15px;
+    border-radius: 8px;
+    font-family: "Inter", sans-serif;
+    display: flex;
+    flex-direction: column;
+    background-color: #4B4A38;
+    border-radius: 5px;
+}
+
+.last-active-pockets h3 {
+    color: #fff;
+    margin: 0;
+    margin-bottom: 10px;
+}
+

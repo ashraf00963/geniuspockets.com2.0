@@ -1,0 +1,54 @@
+.pockets-analysis {
+    padding: 20px;
+    background-color: #4B4A38;
+    border-radius: 8px;
+    color: #ddd;
+}
+
+.pockets-analysis h3 {
+    margin: 0;
+    margin-bottom: 15px;
+    color: #fff;
+}
+.analysis-overview {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin: 0.5rem 0;
+}
+
+.analysis-overview-first p,
+.analysis-overview-second p
+{
+    background-color: #2e2e2e;
+    padding: 8px;
+    border-radius: 5px;
+    margin: 0.2rem 0;
+}
+
+.tips h4 {
+    margin-top: 15px;
+    margin-bottom: 10px;
+    color: #00b894;
+}
+
+.tips ul {
+    list-style: none;
+    border-radius: 5px;
+    padding: 0;
+    margin: 0;
+    background-color: #4B4A38;
+}
+
+.tips li {
+    margin-bottom: 10px;
+    color: #fff;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    background-color: #2e2e2e;
+    padding: 15px;
+    padding-top: 10px;
+    text-align: justify;
+}
+
+

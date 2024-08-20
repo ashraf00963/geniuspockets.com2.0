@@ -1,27 +1,86 @@
 .analysis-tips {
-    margin: 3rem 6rem;
-    background-color: #FBFAE8;
+    margin: 1rem 0;
+    background-color: #4b4a38;
+    color: #fff;
     padding: 1rem;
     border: 1px solid #ccc;
     border-radius: 5px;
 }
 
-.analysis-tips h2, .salary-analysis h2 {
-    margin: 0.5rem;
-    margin-top: 1rem;
-    margin-bottom: 0;
-    color: #36A2EB;
+.analysis-tips h2 {
+    margin: 0rem;
+    margin-bottom: 0.5rem;
 }
 
-.salary-analysis h4{
-    color: #FF6384;
-    margin: 0.5rem;
-    margin-left: 1rem;
+.analysis-second-h {
+    margin-top: 1.5rem !important;
+}
+
+.salary-analysis h4 {
+    margin: 0.5rem 0;
     text-decoration: underline;
 }
 
 .salary-analysis ul {
-    margin-top: 0.5rem;
+    margin: 0.5rem 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+}
+
+.salary-analysis li {
+    width: 20%;
+    margin: 0.2rem 0;
+    border-radius: 5px;
+    padding: 5px;
+    background-color: #2e2e2e;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.salary-analysis li span {
+    margin: 0.2rem 0;
+    text-align: left;
+}
+
+.compare-average {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 100%;
+    background-color: #2e2e2e;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.compare-average li {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: self-start;
+    background-color: transparent;
+    padding: 10px;
+    margin: 0;
+    width: 100%;
+}
+
+.annual-salary {
+    color: #0FD6BE;
+}
+
+.monthly-salary {
+    color: #ffe263;
+}
+
+.weekly-salary {
+    color: #ff9463;
+}
+
+.hourly-salary {
+    color: #FF6384;
 }
 
 .tips ul {

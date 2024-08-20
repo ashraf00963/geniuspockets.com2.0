@@ -1,0 +1,19 @@
+.add-expense-con {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.add-expense-icon {
+    width: 100px;
+    margin-bottom: 0.5rem;
+}
+
+.add-expense-btns {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 1rem;
+    font-family: "Inter", sans-serif;
+}

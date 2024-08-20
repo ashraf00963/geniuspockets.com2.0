@@ -1,0 +1,26 @@
+!!! need to be fixed !!!:
+    font size is not the same in pages
+    dashboard charts are stupid
+    tables also not same 
+    order change in dashboard
+    income page change to reusable and separate analysis from tips  
+
+upcomming: 
+    navbar:
+        account settings:
+            either a full page or popup on hover
+            funcs: edit user info, deactivate account
+        sidebar to navigate between pages
+        logo in middle
+        notification icon 
+    
+    expenses page:
+        similar to income page with possible diffrence tax finder
+
+    notification system:
+        notify user of auto added salary 
+        notify user of saving pockets depending on the priority system
+
+
+to do when switching to production:
+    add the script with ? tool to auto added income and/or expenses

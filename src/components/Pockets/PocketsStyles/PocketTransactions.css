@@ -1,0 +1,55 @@
+/* PocketTransactions.css */
+
+.pocket-transactions {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    margin: 1rem 0;
+    background-color: #4B4A38;
+    border-radius: 5px;
+}
+
+.chart-section {
+    width: 47%;
+    margin-right: 0.2rem;
+    padding: 10px;
+    background-color: #2E2E2E;
+    border-radius: 5px;
+}
+
+.history-table {
+    width: 48%;   
+    padding: 10px;
+    background-color: #2E2E2E;
+    border-radius: 5px;
+}
+
+.history-table table { 
+    color: #fff;
+    text-align: center;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.history-table th,
+.history-table td {
+    font-size: 0.8rem;
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+}
+
+.history-table td {
+    text-align: left;
+}
+
+.history-table .positive {
+    color: #36a2eb;
+}
+
+.history-table .negative {
+    color: #ff6384;
+}

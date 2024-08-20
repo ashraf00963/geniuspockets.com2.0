@@ -1,0 +1,60 @@
+.charts {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 1rem 0;
+    font-family: "Inter", sans-serif;
+}
+
+.charts-line-chart {
+    background-color: #4B4A38;
+    padding: 15px;
+    width: 46%;
+    border: none;
+    border-radius: 5px;
+}
+
+.charts-pie-chart {
+    background-color: #4B4A38;
+    padding: 15px;
+    width: 46%;
+    height: 250px;
+    border: none;
+    border-radius: 5px;
+}
+
+.charts-pie-data {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0;
+}
+
+.charts-pie-data p {
+    margin: 0;
+    margin-bottom: 0.5rem;
+    color: #fff;
+}
+
+.dashboard-income-p {
+    background-color: #2e2e2e;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.dashboard-expenses-p {
+    background-color: #2e2e2e;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+#dashboard-totalincome {
+    color: #36a2eb;
+    font-size: 0.95rem;
+}
+
+#dashboard-totalexpenses {
+    color: #ff6384;
+    font-size: 0.95rem;
+}

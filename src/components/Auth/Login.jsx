@@ -21,7 +21,7 @@ const Login = () => {
   
     // Ensure you navigate only when the user is logged in
     if (user) {
-      navigate('/income');
+      navigate('/dashboard');
     }
   }, [message, error, user, dispatch, navigate]);  
   
@@ -34,7 +34,7 @@ const Login = () => {
       const authToken = resultAction.payload.auth_token;
       localStorage.setItem('auth_token', authToken);
       // Navigate to income only on successful login
-      navigate('/income');
+      navigate('/dashboard');
     } else {
       // Log the error and show the error message
       console.error("Login failed:", resultAction.payload);

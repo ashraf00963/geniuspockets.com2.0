@@ -1,27 +1,33 @@
-import { useState } from 'react';
-import piggyBank from '../../assets/piggy-bank.png';
-import './incomeStyles/AddIncome.css';
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { addIncomeAsync } from '../../../redux/slices/incomeSlice'; 
+import incomeIcon from '../../../assets/income.png';
+import './balanceStyles/AddIncome.css';
 
-const AddIncome = ({ onAddIncome }) => {
+const AddIncome = ({ onClose, user_id }) => {
+  const dispatch = useDispatch();
+  const { loading, error } = useSelector((state) => state.income); 
+
   const [type, setType] = useState('');
   const [amount, setAmount] = useState('');
   const [hpw, setHPW] = useState('');
   const [autoRepeat, setAutoRepeat] = useState(false);
   const [dom, setDOM] = useState('');
-  const [error, setError] = useState(''); // State for error messages
+  const [formError, setFormError] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Check if the type is selected
+
     if (!type) {
-      setError('Please select an income type.');
-      return; // Prevent submission
+      setFormError('Please select an income type.');
+      return;
     }
 
     const incomeData = {
+      user_id: user_id,
       type,
       amount: parseFloat(amount),
-      auto: autoRepeat ? 1 : 0, // Set auto based on the checkbox state
+      auto: autoRepeat ? 1 : 0,
     };
 
     if (type === 'salary') {
@@ -31,8 +37,8 @@ const AddIncome = ({ onAddIncome }) => {
       }
     }
 
-    // Call the function to add income
-    onAddIncome(incomeData);
+    // Dispatch action to add income
+    dispatch(addIncomeAsync(incomeData));
 
     // Reset form fields and error
     setType('');
@@ -40,15 +46,14 @@ const AddIncome = ({ onAddIncome }) => {
     setHPW('');
     setAutoRepeat(false);
     setDOM('');
-    setError('');
+    setFormError('');
   };
 
   return (
     <div className="add-income">
       <div className='add-income-con'>
-        <img src={piggyBank} alt='piggy Bank' />
+        <img className='add-income-icon' src={incomeIcon} alt='Income Icon' />
         <form onSubmit={handleSubmit}>
-          <h3>Add Income</h3>
           <div className="form-group">
             <select id="type" value={type} onChange={(e) => setType(e.target.value)} required>
               <option value="" disabled hidden>
@@ -95,12 +100,7 @@ const AddIncome = ({ onAddIncome }) => {
               {autoRepeat && (
                 <div className="form-group">
                   <label htmlFor="dom">Day Of Month</label>
-                  <select
-                    id="dom"
-                    value={dom}
-                    onChange={(e) => setDOM(e.target.value)}
-                    required
-                  >
+                  <select id="dom" value={dom} onChange={(e) => setDOM(e.target.value)} required>
                     {[...Array(29).keys()].map((num) => (
                       <option key={num + 1} value={num + 1}>
                         {num + 1}
@@ -113,8 +113,15 @@ const AddIncome = ({ onAddIncome }) => {
             </>
           )}
 
-          {error && <p className="error-message">{error}</p>} {/* Display error message if any */}
-          <button type="submit">Add Income</button>
+          {formError && <p className="error-message">{formError}</p>}
+          {loading && <p>Loading...</p>}
+          {error && <p style={{ color: 'red' }}>{error}</p>}
+          <div className='income-page-btns'>
+            <button onClick={onClose} className="cancel-button">
+              Cancel
+            </button>
+            <button className='confirm-btn' type="submit">Confirm</button>
+          </div>
         </form>
       </div>
     </div>

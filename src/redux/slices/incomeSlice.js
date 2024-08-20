@@ -7,6 +7,7 @@ const initialState = {
   incomes: [],
   loading: false,
   error: null,
+  userSalary: null,
 };
 
 // Async thunk for adding income
@@ -86,6 +87,31 @@ export const deleteIncomeAsync = createAsyncThunk(
   }
 );
 
+// Fetch user salary
+export const fetchUserSalaryAsync = createAsyncThunk(
+  'income/fetchUserSalary',
+  async (_, { rejectWithValue }) => {
+    try {
+      const token = localStorage.getItem('auth_token');
+      if (!token) throw new Error('No token found');
+
+      const response = await api.get('/fetchUserSalary.php', {
+        headers: {
+          Authorization: token,
+        },
+      });
+
+      if (response.data.success) {
+        return response.data; // Includes monthlySalary, hpw, and possibly dom
+      } else {
+        throw new Error(response.data.message);
+      }
+    } catch (error) {
+      return rejectWithValue(error.response?.data || 'Failed to fetch user salary');
+    }
+  }
+);
+
 const incomeSlice = createSlice({
   name: 'income',
   initialState,
@@ -131,6 +157,18 @@ const incomeSlice = createSlice({
         state.incomes = state.incomes.filter((income) => income.id !== deletedIncomeId);
       })
       .addCase(deleteIncomeAsync.rejected, (state, action) => {
+        state.error = action.payload;
+      })
+      .addCase(fetchUserSalaryAsync.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchUserSalaryAsync.fulfilled, (state, action) => {
+        state.loading = false;
+        state.userSalary = action.payload; // Set the user salary details
+      })
+      .addCase(fetchUserSalaryAsync.rejected, (state, action) => {
+        state.loading = false;
         state.error = action.payload;
       });
   },

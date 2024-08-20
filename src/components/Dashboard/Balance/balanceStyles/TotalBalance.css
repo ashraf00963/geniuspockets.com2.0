@@ -1,0 +1,34 @@
+.total-balance-card {
+    background-color: #4B4A38;
+    font-family: "Inter", sans-serif;
+    border-radius: 5px;
+    padding: 10px;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.total-balance-card h3 {
+    margin: 0;
+    margin-top: 0.2rem;
+    font-weight: 500;
+}
+
+.balance-amount {
+    margin: 0.5rem 0;
+    margin-top: 0.5rem;
+    margin-left: 0.2rem;
+    color: #0FD6BE;
+}
+
+.add-button {
+    align-self: flex-end;
+    background-color: transparent;
+    border: none;
+}
+
+.debit-card {
+    width: 32px;
+    cursor: pointer;
+}

@@ -31,8 +31,8 @@ const IncomeHistory = () => {
           {incomes.map((income) => (
             <tr key={income.id} onClick={() => handleRowClick(income)}>
               <td>{income.type}</td>
-              <td>+{income.amount}€</td>
-              <td>{new Date(income.added_at).toLocaleDateString()}</td>
+              <td id='income-amount'>+{income.amount}€</td>
+              <td id='income-date'>{new Date(income.added_at).toLocaleDateString()}</td>
               <td>{income.auto ? 'Yes' : 'No'}</td>
             </tr>
           ))}

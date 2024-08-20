@@ -1,0 +1,66 @@
+.pocket-detail-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.popup-detail-content {
+    background-color: #FBFAE8;
+    color: #000;
+    border-radius: 10px;
+    padding: 20px 40px;
+    width: fit-content;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.popup-detail-content h3 {
+    margin: 1rem 0;
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+}
+
+.details-form-actions {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.save-button,
+.delete-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-family: "Inter", sans-serif;
+    transition: all 0.3s;
+}
+
+.save-button {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.delete-button {
+    background-color: #2e2e2e;
+    color: white;
+}
+
+.save-button:hover {
+    background-color: #28852b;
+    color: #2e2e2e;
+}
+
+.delete-button:hover {
+    background-color: #aa0303;
+    color: #2e2e2e;
+}

@@ -81,6 +81,7 @@ const IncomeDashboard = () => {
         ],
         backgroundColor: ['#FF6384', '#36A2EB'],
         hoverBackgroundColor: ['#FF6384', '#36A2EB'],
+        borderColor: 'transparent',
       },
     ],
   };
@@ -184,6 +185,9 @@ const IncomeDashboard = () => {
           display: false,
           text: 'Date',
         },
+        ticks: {
+          color: '#ddd',
+        },
       },
       y: {
         beginAtZero: true,
@@ -191,12 +195,19 @@ const IncomeDashboard = () => {
           display: false,
           text: 'Amount',
         },
+        ticks: {
+          callback: function (value) {
+              return value + '€';
+          },
+          color: '#ddd',
+        },
       },
     },
   };
 
   const pieChartOptions = {
     responsive: true,
+    maintainAspectRatio: false,
     plugins: {
       tooltip: {
         callbacks: {
@@ -208,7 +219,7 @@ const IncomeDashboard = () => {
         },
       },
       legend: {
-        display: true,
+        display: false,
         position: 'top',
         
       },
@@ -249,11 +260,17 @@ const IncomeDashboard = () => {
 
       <div className="charts-container">
         <div className="pie-chart-card">
-          <Pie data={pieChartData} options={pieChartOptions} />
+          <div className='pie-chart-percentage'>
+            <p>Salary: <span style={{ color: '#36A2EB'}}>{totalIncome > 0 ? ((incomeSummary.salary / totalIncome) * 100).toFixed(2) : 0}%</span></p>
+            <p >Passive: <span style={{ color: '#FF6384'}}>{totalIncome > 0 ? ((incomeSummary.passive / totalIncome) * 100).toFixed(2) : 0}%</span></p>
+          </div>
+          <div style={{ position: 'relative', width: '100%', height: '210px' }}>
+            <Pie data={pieChartData} options={pieChartOptions} />
+          </div>
         </div>
 
         <div className="bar-chart-card">
-          <Bar data={barChartData} options={barChartOptions} />
+          <Bar data={barChartData} options={barChartOptions} style={{ width: '100%', height: '250px'}}/>
         </div>
       </div>
     </div>
