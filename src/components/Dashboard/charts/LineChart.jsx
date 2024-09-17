@@ -1,5 +1,3 @@
-// src/components/Dashboard/Charts/LineChart.jsx
-
 import React from 'react';
 import { Line } from 'react-chartjs-2';
 import {
@@ -25,7 +23,7 @@ const LineChart = ({ incomeData, expenseData }) => {
         data: incomeData.map((income) => parseFloat(income.amount)),
         borderColor: '#36a2eb',
         borderWidth: 2,
-        tension: 0.5, // Smooth curve
+        tension: 0, // Smooth curve
         fill: true, // Fill the area under the line
         backgroundColor: 'rgba(54, 162, 235, 0.1)', // Light green glassy effect
         pointRadius: 2, // Hide points

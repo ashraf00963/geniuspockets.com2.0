@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addPocketAsync, fetchPocketsAsync } from '../../redux/slices/pocketSlice'; // Import fetchPocketsAsync
+import { addPocketAsync, fetchPocketsAsync } from '../../redux/slices/pocketSlice';
 import { validateSession } from '../../redux/slices/authSlice';
-import pocket from '../../assets/pocket.png';
+import pocket from '../../assets/pocket.webp';
+import { useTranslation } from 'react-i18next'; // Import useTranslation hook
 import './PocketsStyles/CreatePocketPopup.css';
 
 const CreatePocketPopup = ({ onClose }) => {
+  const { t } = useTranslation('pocketsPage'); // Initialize the translation hook
   const [name, setName] = useState('');
   const [goalAmount, setGoalAmount] = useState('');
   const [deadline, setDeadline] = useState('');
@@ -25,7 +27,7 @@ const CreatePocketPopup = ({ onClose }) => {
     e.preventDefault();
 
     if (!user) {
-      console.error('User ID is missing. Cannot create a pocket without it.');
+      // Notify with toast
       return;
     }
 
@@ -36,7 +38,7 @@ const CreatePocketPopup = ({ onClose }) => {
       user_id: user.id,
     };
 
-    console.log('Submitting Pocket Data:', pocketData);
+    console.log(t('submittingPocketData'), pocketData); // Log translated message
 
     dispatch(addPocketAsync(pocketData)).then((result) => {
       if (result.type === 'pockets/addPocket/fulfilled') {
@@ -49,14 +51,14 @@ const CreatePocketPopup = ({ onClose }) => {
   return (
     <div className="create-pocket-popup">
       <div className="popup-content">
-        <img src={pocket} alt='pocket icon' />
-        <h3>Create New Pocket</h3>
+        <img src={pocket} alt={t('pocketIconAlt')} /> {/* Translate alt text */}
+        <h3>{t('createNewPocket')}</h3> {/* Translate title */}
         <form onSubmit={handleSubmit}>
           <div className="form-group">
             <input
               type="text"
               value={name}
-              placeholder='Pocket Name'
+              placeholder={t('pocketName')} 
               onChange={(e) => setName(e.target.value)}
               required
             />
@@ -65,13 +67,13 @@ const CreatePocketPopup = ({ onClose }) => {
             <input
               type="number"
               value={goalAmount}
-              placeholder='Goal Amount'
+              placeholder={t('goalAmount')} 
               onChange={(e) => setGoalAmount(e.target.value)}
               required
             />
           </div>
           <div className="form-group">
-            <label>Deadline</label>
+            <label>{t('deadline')}</label> {/* Translate label */}
             <input
               type="date"
               value={deadline}
@@ -79,13 +81,13 @@ const CreatePocketPopup = ({ onClose }) => {
               required
             />
           </div>
-          {error && <p className="error-message">{error.message || error}</p>}
+
           <div className="form-actions">
             <button type="button" onClick={onClose} className="cancel-button">
-              Cancel
+              {t('cancel')} {/* Translate button text */}
             </button>
             <button type="submit" className="confirm-button" disabled={loading}>
-              {loading ? 'Creating...' : 'Confirm'}
+              {loading ? t('creating') : t('confirm')} {/* Translate button text */}
             </button>
           </div>
         </form>

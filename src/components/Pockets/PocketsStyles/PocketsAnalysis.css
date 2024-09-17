@@ -11,19 +11,19 @@
     color: #fff;
 }
 .analysis-overview {
-    display: flex;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     gap: 0.5rem;
     margin: 0.5rem 0;
 }
 
-.analysis-overview-first p,
-.analysis-overview-second p
-{
+.analysis-overview p {
     background-color: #2e2e2e;
     padding: 8px;
     border-radius: 5px;
     margin: 0.2rem 0;
+    border: 1px solid #00b894;
+    text-align: center;
 }
 
 .tips h4 {

@@ -1,5 +1,3 @@
-// src/components/Dashboard/Balance/IncomeAndExpenseModal.jsx
-
 import React, { useState } from 'react';
 import AddIncome from './AddIncome'; 
 import AddExpense from './AddExpense'; 

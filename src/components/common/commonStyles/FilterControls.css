@@ -1,0 +1,20 @@
+.filter-controls * {
+    margin-right: 0.2rem;
+    font-family: "Inter", sans-serif;
+    outline: none;
+    cursor: pointer;
+}
+
+#timeFrame {
+    border: 1px solid #000;
+    border-radius: 4px;
+}
+
+#type {
+    border: 1px solid #000;
+    border-radius: 4px;
+}
+
+#timeFrame * {
+    cursor: pointer;
+}

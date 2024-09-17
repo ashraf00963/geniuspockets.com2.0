@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import WalletModal from './WalletModal';
-import walletIcon from '../../assets/wallet.png';
+import walletIcon from '../../assets/wallet.webp';
 import './PocketsStyles/Pockets.css';
 
 const WalletButton = () => {

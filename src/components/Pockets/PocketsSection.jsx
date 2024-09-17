@@ -2,16 +2,18 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchPocketsAsync, updatePocketAsync, deletePocketAsync } from '../../redux/slices/pocketSlice';
 import CreatePocketPopup from './CreatePocketPopup'; 
-import PocketDetailPopup from './PocketDetailPopup';  // Import the detail popup component
+import PocketDetailPopup from './PocketDetailPopup'; 
 import PocketItem from './PocketItem';
+import { useTranslation } from 'react-i18next'; // Import useTranslation hook
 import './PocketsStyles/PocketsSection.css';
 
 const PocketsSection = () => {
     const [isPopupOpen, setIsPopupOpen] = useState(false);
-    const [filter, setFilter] = useState('active'); // State for the selected filter
-    const [selectedPocket, setSelectedPocket] = useState(null); // State for the selected pocket
+    const [filter, setFilter] = useState('active'); 
+    const [selectedPocket, setSelectedPocket] = useState(null); 
     const dispatch = useDispatch();
     const pockets = useSelector((state) => state.pockets.pockets);
+    const { t } = useTranslation('pocketsPage'); // Assuming the namespace is 'pocketsPage'
 
     useEffect(() => {
         dispatch(fetchPocketsAsync());
@@ -34,7 +36,6 @@ const PocketsSection = () => {
     };
 
     const handleEditPocket = (updatedPocket) => {
-        // Check if updatedPocket is valid and has an id
         if (updatedPocket && updatedPocket.id) {
             dispatch(updatePocketAsync(updatedPocket));
             setSelectedPocket(null);
@@ -46,15 +47,14 @@ const PocketsSection = () => {
         setSelectedPocket(null);
     };
 
-    // Filter pockets based on selected filter
     const filteredPockets = pockets.filter(pocket => pocket.status === filter);
 
     return (
         <div className="pockets-section">
             <div className="pockets-header">
-                <h3>Pockets</h3>
+                <h3>{t('pocketsTitle')}</h3>
                 <button onClick={handleCreatePocketClick} className="create-pocket-button">
-                    Create new pocket
+                    {t('createNewPocket')}
                 </button>
             </div>
             {isPopupOpen && <CreatePocketPopup onClose={handleClosePopup} />}
@@ -67,25 +67,24 @@ const PocketsSection = () => {
                 />
             )}
 
-            {/* Filter Buttons */}
             <div className="filter-buttons">
                 <button 
-                    className={filter === 'active' ? 'active-filter' : 'active'} 
+                    className={filter === 'active' ? 'active-filter' : ''} 
                     onClick={() => setFilter('active')}
                 >
-                    Active
+                    {t('active')}
                 </button>
                 <button 
-                    className={filter === 'completed' ? 'active-filter' : 'completed'} 
+                    className={filter === 'completed' ? 'active-filter' : ''} 
                     onClick={() => setFilter('completed')}
                 >
-                    Completed
+                    {t('completed')}
                 </button>
                 <button 
-                    className={filter === 'unsuccessful' ? 'active-filter' : 'unsuccessful'} 
+                    className={filter === 'unsuccessful' ? 'active-filter' : ''} 
                     onClick={() => setFilter('unsuccessful')}
                 >
-                    Unsuccessful
+                    {t('unsuccessful')}
                 </button>
             </div>
 
@@ -95,7 +94,7 @@ const PocketsSection = () => {
                         <PocketItem key={pocket.id} pocket={pocket} onClick={handlePocketClick} />
                     ))
                 ) : (
-                    <p>No pockets found for this status.</p>
+                    <p>{t('noPocketsFound')}</p>
                 )}
             </div>
         </div>

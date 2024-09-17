@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next'; // Import useTranslation hook
 import './PocketsStyles/PocketsAnalysis.css';
 
 const PocketsAnalysis = () => {
+    const { t } = useTranslation('pocketsPage'); // Assuming the namespace is 'pocketsPage'
     const pockets = useSelector((state) => state.pockets.pockets);
     const availableBalance = useSelector((state) => state.availableBalance.balance);
     const [analysis, setAnalysis] = useState(null);
@@ -23,12 +25,11 @@ const PocketsAnalysis = () => {
             const now = new Date();
             const diffTime = Math.abs(deadline - now);
             const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
-            return diffDays <= 365; // Consider short term as within a year
+            return diffDays <= 365;
         }).length;
 
         const longTermPockets = totalPockets - shortTermPockets;
 
-        // Generate analysis
         const analysisData = {
             totalPockets,
             activePockets,
@@ -42,7 +43,9 @@ const PocketsAnalysis = () => {
                 unsuccessfulPercentage,
                 shortTermPockets,
                 longTermPockets,
-                activePockets
+                activePockets,
+                completedPockets,
+                unsuccessfulPockets
             })
         };
 
@@ -52,61 +55,36 @@ const PocketsAnalysis = () => {
     const generateTips = ({ availableBalance, unsuccessfulPercentage, shortTermPockets, longTermPockets, activePockets, completedPockets, unsuccessfulPockets }) => {
         const tips = [];
     
-        // Tip 1: Focus on fewer goals if there are too many unsuccessful pockets
         if (unsuccessfulPercentage > 20) {
-            tips.push(
-                "You have several goals that didn't go as planned. Consider prioritizing fewer, more achievable goals. Focus on what's most important to you and allocate resources accordingly."
-            );
+            tips.push(t('tips.focusOnFewerGoals'));
         }
     
-        // Tip 2: Build an emergency fund if the balance is low
         if (availableBalance < 500) {
-            tips.push(
-                "Your available balance is low. It's crucial to have an emergency fund that covers 3-6 months of expenses. Start by setting aside a small amount each month to build this safety net."
-            );
+            tips.push(t('tips.lowBalance'));
         } else if (availableBalance > 5000) {
-            tips.push(
-                "You have a healthy available balance! Consider putting some of it into a high-yield savings account or investing it in a diversified portfolio to grow your wealth over time."
-            );
+            tips.push(t('tips.highBalance'));
         }
     
-        // Tip 3: Short-term vs. Long-term balance
         if (shortTermPockets > longTermPockets) {
-            tips.push(
-                "You have more short-term goals. Ensure you're not sacrificing long-term savings for immediate needs. Balance your goals by setting up a long-term investment plan, such as retirement savings."
-            );
+            tips.push(t('tips.shortTermFocus'));
         } else if (longTermPockets > shortTermPockets) {
-            tips.push(
-                "You have a strong focus on long-term goals. This is great! Just make sure to keep some liquidity for short-term needs and unexpected expenses."
-            );
+            tips.push(t('tips.longTermFocus'));
         }
     
-        // Tip 4: Too many active pockets
         if (activePockets > 5) {
-            tips.push(
-                "Managing multiple goals at once can be overwhelming. Try consolidating some of your pockets into broader categories to simplify your savings strategy. For example, merge similar goals like 'Vacation' and 'Weekend Getaway' into one 'Travel Fund.'"
-            );
+            tips.push(t('tips.tooManyActiveGoals'));
         }
     
-        // Tip 5: Celebrate small wins
         if (completedPockets > 0) {
-            tips.push(
-                `You've successfully completed ${completedPockets} goal(s)! Take a moment to celebrate your progress. Consider using this momentum to start your next goal or add to an existing one.`
-            );
+            tips.push(t('tips.celebrateSuccess', { count: completedPockets }));
         }
     
-        // Tip 6: Automatic savings
         if (availableBalance > 1000 && activePockets > 0) {
-            tips.push(
-                "With your current balance, it's a good idea to set up automatic transfers into your pockets. Automating your savings ensures consistent progress toward your goals without requiring you to think about it."
-            );
+            tips.push(t('tips.automaticSavings'));
         }
     
-        // Tip 7: Review and adjust goals
         if (unsuccessfulPockets > 0) {
-            tips.push(
-                "Some of your goals didn't work out. Take time to review these goals—were they realistic? What challenges did you face? Adjust your future goals based on these learnings."
-            );
+            tips.push(t('tips.reviewGoals'));
         }
     
         return tips;
@@ -116,21 +94,17 @@ const PocketsAnalysis = () => {
         <div className="pockets-analysis">
             {analysis && (
                 <>
-                    <h3>Pockets Analysis</h3>
+                    <h3>{t('pocketsAnalysis')}</h3>
                     <div className="analysis-overview">
-                        <div className='analysis-overview-first'>
-                            <p>Total Pockets: {analysis.totalPockets}</p>
-                            <p>Active Pockets: {analysis.activePockets}</p>
-                            <p>Completed Pockets: {analysis.completedPockets}</p>
-                        </div>
-                        <div className='analysis-overview-second'>
-                            <p>Unsuccessful Pockets: {analysis.unsuccessfulPockets}</p>
-                            <p>Short-Term Pockets: {analysis.shortTermPockets}</p>
-                            <p>Long-Term Pockets: {analysis.longTermPockets}</p>
-                        </div>
+                        <p>{t('totalPockets')}: {analysis.totalPockets}</p>
+                        <p>{t('activePockets')}: {analysis.activePockets}</p>
+                        <p>{t('completedPockets')}: {analysis.completedPockets}</p>
+                        <p>{t('unsuccessfulPockets')}: {analysis.unsuccessfulPockets}</p>
+                        <p>{t('shortTermPockets')}: {analysis.shortTermPockets}</p>
+                        <p>{t('longTermPockets')}: {analysis.longTermPockets}</p>
                     </div>
                     <div className="tips">
-                        <h4>Tips</h4>
+                        <h4>{t('tipsLabel')}</h4>
                         <ul>
                             {analysis.tips.map((tip, index) => (
                                 <li key={index}>{tip}</li>

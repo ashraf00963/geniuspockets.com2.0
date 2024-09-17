@@ -1,9 +1,18 @@
 .analysis-tips {
     margin: 1rem 0;
-    background-color: #4b4a38;
     color: #fff;
+}
+
+.salary-analysis {
+    background-color: #4b4a38;
     padding: 1rem;
-    border: 1px solid #ccc;
+    margin: 1rem 0;
+    border-radius: 5px;
+}
+
+.analysis-second {
+    background-color: #4b4a38;
+    padding: 1rem;
     border-radius: 5px;
 }
 
@@ -12,13 +21,8 @@
     margin-bottom: 0.5rem;
 }
 
-.analysis-second-h {
-    margin-top: 1.5rem !important;
-}
-
 .salary-analysis h4 {
-    margin: 0.5rem 0;
-    text-decoration: underline;
+    margin: 0.8rem 0 0 0.2rem;
 }
 
 .salary-analysis ul {
@@ -55,6 +59,7 @@
     border-radius: 5px;
     padding: 10px;
 }
+
 
 .compare-average li {
     display: flex;

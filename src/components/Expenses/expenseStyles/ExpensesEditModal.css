@@ -1,0 +1,124 @@
+/* Modal general styles */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal__content {
+  background: #FBFAE8;
+  padding: 20px;
+  border-radius: 8px;
+  width: 400px;
+  color: #2e2e2e;
+}
+
+.modal__title {
+  font-size: 1.5em;
+  margin-bottom: 1rem;
+  margin-top: 0;
+  color: #2e2e2e;
+  text-align: center;
+}
+
+.modal__form {
+  display: flex;
+  flex-direction: column;
+}
+
+.modal__label {
+  margin-bottom: 10px;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal__label-switch {
+    display: flex;
+    justify-content: space-between;
+    margin: 0.2rem 0;
+}
+
+.modal__input--select,
+.modal__input--number {
+  padding: 8px;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Switch styles */
+.modal__switch-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.modal__switch {
+  height: 0;
+  width: 0;
+  visibility: hidden;
+}
+
+.modal__switch-label {
+  cursor: pointer;
+  text-indent: -9999px;
+  width: 50px;
+  height: 25px;
+  background: grey;
+  display: block;
+  border-radius: 50px;
+  position: relative;
+}
+
+.modal__switch-label:after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 20px;
+  height: 20px;
+  background: #fff;
+  border-radius: 50%;
+  transition: 0.3s;
+}
+
+.modal__switch:checked + .modal__switch-label {
+  background: #bada55;
+}
+
+.modal__switch:checked + .modal__switch-label:after {
+  left: calc(100% - 3px);
+  transform: translateX(-100%);
+}
+
+.modal__switch-label:active:after {
+  width: 30px;
+}
+
+/* Modal action buttons */
+.modal__actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.modal__button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background: #f1f1f1;
+}
+
+.modal__button--update {
+  background-color: #4caf50;
+  color: white;
+}

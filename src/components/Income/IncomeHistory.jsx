@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 import IncomeEditModal from './IncomeEditModal';
+import { formatDateToGerman, formatNumberToGerman } from '../../utils/formatUtils';
 import './incomeStyles/IncomeHistory.css';
 
 const IncomeHistory = () => {
+  const { t } = useTranslation('incomePage');  // Initialize the useTranslation hook
   const { incomes } = useSelector((state) => state.income);
   const [selectedIncome, setSelectedIncome] = useState(null);
 
@@ -17,23 +20,23 @@ const IncomeHistory = () => {
 
   return (
     <div className="income-history">
-      <h2>Income History</h2>
+      <h2>{t('incomeHistory')}</h2>  
       <table>
         <thead>
           <tr>
-            <th>Type</th>
-            <th>Amount</th>
-            <th>Date</th>
-            <th>Repeat</th>
+            <th>{t('type')}</th> 
+            <th>{t('amount')}</th>  
+            <th>{t('date')}</th> 
+            <th>{t('repeat')}</th>  
           </tr>
         </thead>
         <tbody>
           {incomes.map((income) => (
             <tr key={income.id} onClick={() => handleRowClick(income)}>
               <td>{income.type}</td>
-              <td id='income-amount'>+{income.amount}€</td>
-              <td id='income-date'>{new Date(income.added_at).toLocaleDateString()}</td>
-              <td>{income.auto ? 'Yes' : 'No'}</td>
+              <td id='income-amount'>+{formatNumberToGerman(income.amount)}€</td>
+              <td id='income-date'>{formatDateToGerman(income.added_at)}</td>
+              <td>{income.auto ? t('yes') : t('no')}</td> 
             </tr>
           ))}
         </tbody>

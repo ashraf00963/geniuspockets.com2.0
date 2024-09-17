@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginUser, clearMessages } from '../../redux/slices/authSlice';
 import { useNavigate } from 'react-router-dom';
-import Logo from '../../assets/logo-BJW8Xa_C.png';
+import { notifySuccess, notifyError } from '../../utils/notificationService';
+import Logo from '../../assets/gpLogo.webp';
 import './Auth.css';
 
 const Login = () => {
@@ -13,13 +14,15 @@ const Login = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (message || error) {
-      setTimeout(() => {
-        dispatch(clearMessages());
-      }, 3000);
+    if (error) {
+      notifyError(error);
+      dispatch(clearMessages());
     }
-  
-    // Ensure you navigate only when the user is logged in
+    if (message) {
+      notifySuccess(message);
+      dispatch(clearMessages());
+    }
+
     if (user) {
       navigate('/dashboard');
     }
@@ -29,14 +32,11 @@ const Login = () => {
     e.preventDefault();
     const resultAction = await dispatch(loginUser({ email, password }));
     
-    // Check if the loginUser action was fulfilled successfully
     if (loginUser.fulfilled.match(resultAction)) {
       const authToken = resultAction.payload.auth_token;
       localStorage.setItem('auth_token', authToken);
-      // Navigate to income only on successful login
       navigate('/dashboard');
     } else {
-      // Log the error and show the error message
       console.error("Login failed:", resultAction.payload);
     }
   };
@@ -55,8 +55,6 @@ const Login = () => {
     <div className='auth-page'>
       <div className='auth-container'>
         <img className='auth-header-logo' src={Logo} />
-        {error && <p style={{ color: 'red' }}>{error}</p>}
-        {message && <p style={{ color: 'green' }}>{message}</p>}
         <form onSubmit={handleSubmit}>
           <input
             type="email"

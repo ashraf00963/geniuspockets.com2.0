@@ -2,12 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchPocketsAsync, depositAsync, withdrawAsync } from '../../redux/slices/pocketSlice';
 import { validateSession } from '../../redux/slices/authSlice';
-import jar from '../../assets/jar.png';
-import brokenJar from '../../assets/saving.png';
+import { useTranslation } from 'react-i18next';
+import jar from '../../assets/jar.webp';
+import brokenJar from '../../assets/saving.webp';
 import './PocketsStyles/WalletModal.css';
 
 const WalletModal = ({ onClose }) => {
   const dispatch = useDispatch();
+  const { t } = useTranslation('pocketsPage'); // Assuming your namespace is 'pocketsPage'
   const pockets = useSelector((state) => state.pockets.pockets);
   const availableBalance = useSelector((state) => state.availableBalance.balance);
   const user = useSelector((state) => state.auth.user);
@@ -28,14 +30,14 @@ const WalletModal = ({ onClose }) => {
 
   const handleConfirm = () => {
     if (!user) {
-      alert('User not authenticated. Please log in.');
+      alert(t('userNotAuthenticated')); // Use translation for the alert
       return;
     }
 
     const payload = {
       pocketId: selectedPocket,
       amount: parseFloat(amount),
-      user_id: user.id,  // Ensure user_id is included in the payload
+      user_id: user.id,
     };
 
     if (isDeposit) {
@@ -55,22 +57,22 @@ const WalletModal = ({ onClose }) => {
             onClick={() => setIsDeposit(true)}
             disabled={isDeposit}
           >
-            Deposit
+            {t('deposit')}
           </button>
           <button
             className={`toggle-button ${!isDeposit ? 'active' : ''}`}
             onClick={() => setIsDeposit(false)}
             disabled={!isDeposit}
           >
-            Withdraw
+            {t('withdraw')}
           </button>
         </div>
-        {isDeposit ? <img src={jar} alt='pocket icon' /> : <img src={brokenJar} alt='broken jar' />}
+        {isDeposit ? <img src={jar} alt={t('pocketIconAlt')} /> : <img src={brokenJar} alt={t('brokenJarIconAlt')} />}
         <div className="modal-body">
           <div className="form-group">
             <select value={selectedPocket} onChange={(e) => setSelectedPocket(e.target.value)} required>
               <option value="" disabled hidden>
-                Pocket
+                {t('selectPocket')}
               </option>
               {pockets.map((pocket) => (
                 <option key={pocket.id} value={pocket.id}>
@@ -84,7 +86,7 @@ const WalletModal = ({ onClose }) => {
               type="number"
               value={amount}
               onChange={(e) => setAmount(e.target.value)}
-              placeholder="Amount"
+              placeholder={t('amount')}
               max={isDeposit ? availableBalance : undefined}
               required
             />
@@ -92,10 +94,10 @@ const WalletModal = ({ onClose }) => {
         </div>
         <div className="modal-footer">
           <button onClick={onClose} className="cancel-button">
-            Cancel
+            {t('cancel')}
           </button>
           <button onClick={handleConfirm} className="confirm-button">
-            Confirm
+            {t('confirm')}
           </button>
         </div>
       </div>

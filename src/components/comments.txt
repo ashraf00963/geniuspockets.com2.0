@@ -1,9 +1,15 @@
 !!! need to be fixed !!!:
-    font size is not the same in pages
-    dashboard charts are stupid
-    tables also not same 
-    order change in dashboard
-    income page change to reusable and separate analysis from tips  
+    font size is not the same in pages || Done
+    dashboard charts are stupid || Done
+    tables also not same || no need
+    order change in dashboard || Done
+    income page change to reusable and separate analysis from tips || Done || !!update: all components can be reusable!! 
+    pockets page style change || Done
+    trans history / popup update the styles / date fix || Done
+    migrate fitler and navi styles to thier common folder || Done
+    history modal styles need fixing
+    fix the website behaver when auth token dosnt exist 
+    fix token issue with server request
 
 upcomming: 
     navbar:
@@ -15,12 +21,15 @@ upcomming:
         notification icon 
     
     expenses page:
-        similar to income page with possible diffrence tax finder
+        similar to income page with possible diffrence tax finder || Done
 
     notification system:
         notify user of auto added salary 
         notify user of saving pockets depending on the priority system
-
+    
+    extras:
+        german language will be added and user can switch to english || !!dashboard left!!
+        dark mode will be added and user can switch to light mode
 
 to do when switching to production:
     add the script with ? tool to auto added income and/or expenses

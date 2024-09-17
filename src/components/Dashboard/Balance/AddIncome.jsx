@@ -1,19 +1,33 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addIncomeAsync } from '../../../redux/slices/incomeSlice'; 
-import incomeIcon from '../../../assets/income.png';
+import { addIncomeAsync } from '../../../redux/slices/incomeSlice';
+import incomeIcon from '../../../assets/income.webp';
+import { ToastContainer } from 'react-toastify';
+import { notifySuccess, notifyError } from '../../../utils/notificationService'; 
+import 'react-toastify/dist/ReactToastify.css';
 import './balanceStyles/AddIncome.css';
 
 const AddIncome = ({ onClose, user_id }) => {
   const dispatch = useDispatch();
-  const { loading, error } = useSelector((state) => state.income); 
+  const { loading, error, message } = useSelector((state) => state.income);
 
   const [type, setType] = useState('');
   const [amount, setAmount] = useState('');
+  const [grossSalary, setGrossSalary] = useState(''); // Gross salary field
   const [hpw, setHPW] = useState('');
   const [autoRepeat, setAutoRepeat] = useState(false);
   const [dom, setDOM] = useState('');
   const [formError, setFormError] = useState('');
+
+  useEffect(() => {
+    if (error) {
+      notifyError(error); 
+    }
+
+    if (message) {
+      notifySuccess(message);
+    }
+  }, [message, error, dispatch]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -27,6 +41,7 @@ const AddIncome = ({ onClose, user_id }) => {
       user_id: user_id,
       type,
       amount: parseFloat(amount),
+      gross_salary: parseFloat(grossSalary), // Add gross salary to the payload
       auto: autoRepeat ? 1 : 0,
     };
 
@@ -37,12 +52,12 @@ const AddIncome = ({ onClose, user_id }) => {
       }
     }
 
-    // Dispatch action to add income
     dispatch(addIncomeAsync(incomeData));
 
-    // Reset form fields and error
+    // Reset form fields
     setType('');
     setAmount('');
+    setGrossSalary(''); // Reset gross salary
     setHPW('');
     setAutoRepeat(false);
     setDOM('');
@@ -70,7 +85,7 @@ const AddIncome = ({ onClose, user_id }) => {
               type="number"
               id="amount"
               value={amount}
-              placeholder='Amount'
+              placeholder='Net Amount'
               onChange={(e) => setAmount(e.target.value)}
               required
             />
@@ -81,6 +96,17 @@ const AddIncome = ({ onClose, user_id }) => {
               <div className="form-group">
                 <input
                   type="number"
+                  id="grossSalary"
+                  value={grossSalary}
+                  placeholder='Gross Salary'
+                  onChange={(e) => setGrossSalary(e.target.value)} // Handle gross salary
+                  required
+                />
+              </div>
+
+              <div className="form-group">
+                <input
+                  type="number"
                   id="hpw"
                   value={hpw}
                   placeholder='Hours Per Week'
@@ -88,6 +114,7 @@ const AddIncome = ({ onClose, user_id }) => {
                   required
                 />
               </div>
+
               <div className="form-group-checkbox">
                 <label htmlFor="auto-repeat">Auto Repeat</label>
                 <input
@@ -97,6 +124,7 @@ const AddIncome = ({ onClose, user_id }) => {
                   onChange={(e) => setAutoRepeat(e.target.checked)}
                 />
               </div>
+
               {autoRepeat && (
                 <div className="form-group">
                   <label htmlFor="dom">Day Of Month</label>
@@ -114,8 +142,6 @@ const AddIncome = ({ onClose, user_id }) => {
           )}
 
           {formError && <p className="error-message">{formError}</p>}
-          {loading && <p>Loading...</p>}
-          {error && <p style={{ color: 'red' }}>{error}</p>}
           <div className='income-page-btns'>
             <button onClick={onClose} className="cancel-button">
               Cancel
@@ -124,6 +150,7 @@ const AddIncome = ({ onClose, user_id }) => {
           </div>
         </form>
       </div>
+      <ToastContainer />
     </div>
   );
 };

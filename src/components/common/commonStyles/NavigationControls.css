@@ -1,0 +1,14 @@
+.navigation-controls button {
+    margin-right: 0.4rem;  
+    border: none;
+    border-radius: 100%;
+    padding-top: 5px;
+    background-color: #000;
+    color: #fff;
+    cursor: pointer;
+}
+
+.navigation-controls span {
+    margin-right: 0.4rem;
+    font-family: "Josefin Sans", sans-serif;
+}

@@ -1,18 +1,34 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addExpenseAsync } from '../../../redux/slices/expenseSlice'; // Import the action for adding expense
-import expenseIcon from '../../../assets/minus.png';
+import { addExpenseAsync } from '../../../redux/slices/expenseSlice';
+import expenseIcon from '../../../assets/minus.webp';
+import { ToastContainer } from 'react-toastify';
+import { notifySuccess, notifyError } from '../../../utils/notificationService'; // Import notification service
+import 'react-toastify/dist/ReactToastify.css';
 import './balanceStyles/AddExpense.css';
+import { useTranslation } from 'react-i18next';
 
 const AddExpense = ({ onClose, user_id }) => {
   const dispatch = useDispatch();
-  const { loading, error } = useSelector((state) => state.expense); // Access the redux state for expenses
+  const { loading, error, message } = useSelector((state) => state.expense);
   const [type, setType] = useState('');
   const [customType, setCustomType] = useState('');
   const [amount, setAmount] = useState('');
   const [autoRepeat, setAutoRepeat] = useState(false);
   const [dom, setDOM] = useState('');
-  const [formError, setFormError] = useState(''); // State for form-specific error messages
+  const [formError, setFormError] = useState(''); 
+  const { t } = useTranslation();
+
+  useEffect(() => {
+    if (error) {
+      notifyError(error); // Display error as a toast notification
+    }
+
+    if (message) {
+      notifySuccess(message); // Display success message as a toast notification
+    }
+
+  }, [message, error, dispatch]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -51,16 +67,21 @@ const AddExpense = ({ onClose, user_id }) => {
         <img className='add-expense-icon' src={expenseIcon} alt='Expense Icon' />
         <form onSubmit={handleSubmit}>
           <div className="form-group">
-            <select id="type" value={type} onChange={(e) => setType(e.target.value)} required>
+            <select value={type} onChange={(e) => setType(e.target.value)}>
               <option value="" disabled hidden>
                 --Type--
               </option>
-              <option value="groceries">Groceries</option>
-              <option value="rent">Rent</option>
-              <option value="subscriptions">Subscriptions</option>
-              <option value="entertainment">Entertainment</option>
-              <option value="utilities">Utilities</option>
-              <option value="custom">Custom</option>
+              <option value="groceries">{t('groceries')}</option>
+              <option value="rent">{t('rent')}</option>
+              <option value="utilities">{t('utilities')}</option>
+              <option value="subscriptions">{t('subscriptions')}</option>
+              <option value="entertainment">{t('entertainment')}</option>
+              <option value="work-related">{t('workRelated')}</option> 
+              <option value="medical">{t('medical')}</option> 
+              <option value="charitable-donations">{t('charitableDonations')}</option> 
+              <option value="transportion">{t('Transportion')}</option> 
+              <option value="car-maintenance">{t('carMaintenance')}</option> 
+              <option value="custom">{t('custom')}</option>
             </select>
           </div>
 
@@ -113,8 +134,6 @@ const AddExpense = ({ onClose, user_id }) => {
           )}
 
           {formError && <p className="error-message">{formError}</p>} {/* Display form error message if any */}
-          {loading && <p>Loading...</p>}
-          {error && <p style={{ color: 'red' }}>{error}</p>}
           <div className='add-expense-btns'>
             <button onClick={onClose} className="cancel-button">
               Cancel
@@ -123,6 +142,7 @@ const AddExpense = ({ onClose, user_id }) => {
           </div>
         </form>
       </div>
+      <ToastContainer />  {/* Toast container to display notifications */}
     </div>
   );
 };

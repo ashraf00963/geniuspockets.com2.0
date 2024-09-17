@@ -1,8 +1,9 @@
 import React from 'react';
 import SemiCircleChartWrapper from '../../utils/SemiCircleChart.jsx';
-import goal from '../../assets/goal.png';
-import deadline from '../../assets/deadline.png';
-import piggyBank from '../../assets/savedAmount.png';
+import goal from '../../assets/goal.webp';
+import deadline from '../../assets/deadline.webp';
+import piggyBank from '../../assets/savedAmount.webp';
+import { formatDateToGerman } from '../../utils/formatUtils.js';
 
 const PocketItem = ({ pocket, onClick }) => {
     if (!pocket) {
@@ -27,7 +28,7 @@ const PocketItem = ({ pocket, onClick }) => {
                     </div>
                     <div className="pocket-deadline">
                         <img className="pocket-item-icons" src={deadline} alt='sand watch' />
-                        <span>{new Date(pocket.deadline).toLocaleDateString()}</span>
+                        <span>{formatDateToGerman(pocket.deadline)}</span>
                     </div>
                 </div>
             </div>

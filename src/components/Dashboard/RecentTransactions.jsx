@@ -1,9 +1,8 @@
-// src/components/Dashboard/RecentTransactions.jsx
-
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchIncomesAsync } from '../../redux/slices/incomeSlice';
 import { fetchExpensesAsync } from '../../redux/slices/expenseSlice';
+import { formatDateToGerman, formatNumberToGerman } from '../../utils/formatUtils';
 import './dashboardStyles/RecentTransactions.css';
 
 const RecentTransactions = () => {
@@ -37,7 +36,7 @@ const RecentTransactions = () => {
           <li key={index} className={`transaction-item ${transaction.type}`}>
             <div className="transaction-type">{transaction.type}</div>
             <div className="transaction-date">
-              {new Date(transaction.added_at || transaction.date).toLocaleDateString()}
+              {formatDateToGerman(transaction.added_at || transaction.date)}
             </div>
             <div
               className={`transaction-amount ${

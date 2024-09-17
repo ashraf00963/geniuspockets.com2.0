@@ -1,18 +1,20 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchPocketTransactionsAsync } from '../../redux/slices/pocketSlice';
 import LineChart from './charts/LineChart';
+import { formatDateToGerman, formatNumberToGerman } from '../../utils/formatUtils';
+import { useTranslation } from 'react-i18next'; // Import useTranslation hook
 import './PocketsStyles/PocketTransactions.css';
 
 const PocketTransactions = () => {
     const dispatch = useDispatch();
+    const { t } = useTranslation('pocketsPage'); // Assuming your namespace is 'pocketsPage'
     const transactions = useSelector((state) => state.pockets.transactions);
-    
+
     useEffect(() => {
-        dispatch(fetchPocketTransactionsAsync()); // Fetch all transactions
+        dispatch(fetchPocketTransactionsAsync());
     }, [dispatch]);
 
-    // Slice the last 6 transactions from the array and reverse them to show the latest first
     const lastTransactions = transactions.slice(-6).reverse();
 
     return (
@@ -24,9 +26,9 @@ const PocketTransactions = () => {
                 <table>
                     <thead>
                         <tr>
-                            <th>Pocket</th>
-                            <th>Amount</th>
-                            <th>Date</th>
+                            <th>{t('pocket')}</th>
+                            <th>{t('amount')}</th>
+                            <th>{t('date')}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -35,9 +37,9 @@ const PocketTransactions = () => {
                                 <td>{transaction.pocket_name}</td>
                                 <td className={transaction.transaction_type === 'deposit' ? 'positive' : 'negative'}>
                                     {transaction.transaction_type === 'deposit' ? '+' : '-'}
-                                    {transaction.amount.toLocaleString()}€
+                                    {formatNumberToGerman(transaction.amount)}€
                                 </td>
-                                <td>{new Date(transaction.transaction_date).toLocaleDateString()}</td>
+                                <td>{formatDateToGerman(transaction.transaction_date)}</td>
                             </tr>
                         ))}
                     </tbody>

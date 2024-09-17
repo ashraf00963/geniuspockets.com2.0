@@ -19,30 +19,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 0.5rem 0;
-}
-
-.navigation-controls button {
-    margin-right: 0.4rem;  
-    border: none;
-    border-radius: 100%;
-    padding-top: 5px;
-    background-color: #000;
-    color: #fff;
-    cursor: pointer;
-}
-
-.navigation-controls span {
-    margin-right: 0.4rem;
-    font-family: "Josefin Sans", sans-serif;
-}
-
-.filter-controls * {
-    margin-right: 0.2rem;
-    border: 1px solid #000;
-    font-family: "Josefin Sans", sans-serif;
-    padding-top: 4px;
-    outline: none;
+    margin: 1rem 0 0 0;
 }
 
 .charts-container {

@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { registerUser, clearMessages } from '../../redux/slices/authSlice';
-import Logo from '../../assets/logo-BJW8Xa_C.png';
+import Logo from '../../assets/gpLogo.webp';
+import { ToastContainer } from 'react-toastify';
+import { notifySuccess, notifyError } from '../../utils/notificationService'; // Import notification service
+import 'react-toastify/dist/ReactToastify.css';
 import './Auth.css';
 
 const Register = () => {
@@ -14,24 +17,29 @@ const Register = () => {
     const { loading, error, message } = useSelector((state) => state.auth);
 
     useEffect(() => {
-        if(message || error) {
-            setTimeout(() => {
-                dispatch(clearMessages());
-            }, 3000);
+        if (error) {
+            notifyError(error);  // Use centralized error notification
+        }
+
+        if (message) {
+            notifySuccess(message);  // Use centralized success notification
+        }
+
+        // Clear messages after displaying
+        if (message || error) {
+            dispatch(clearMessages());
         }
     }, [message, error, dispatch]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(registerUser({ first_name: firstName, last_name: lastName, email, password}));
+        dispatch(registerUser({ first_name: firstName, last_name: lastName, email, password }));
     };
 
     return (
         <div className='auth-page'>
             <div className="auth-container">
-                <img className='auth-header-logo' src={Logo} />
-                {error && <p style={{ color: 'red' }}>{error}</p>}
-                {message && <p style={{ color: 'red' }}>{message}</p>}
+                <img className='auth-header-logo' src={Logo} alt="Logo" />
                 <form onSubmit={handleSubmit}>
                     <input
                         type="text"
@@ -66,8 +74,9 @@ const Register = () => {
                     </button>
                 </form>
             </div>
+            <ToastContainer />  {/* Toast container to display notifications */}
         </div>
-    )
+    );
 }
 
 export default Register;

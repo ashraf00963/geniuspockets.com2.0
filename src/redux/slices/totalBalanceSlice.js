@@ -1,5 +1,3 @@
-// src/redux/slices/totalBalanceSlice.js
-
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import api from '../../utils/api';
 
@@ -16,24 +14,19 @@ export const fetchTotalBalanceAsync = createAsyncThunk(
       try {
         const token = localStorage.getItem('auth_token');
         if (!token) throw new Error('No token found');
-  
-        console.log("Authorization token:", token); // Debug: Check if token is being retrieved
-  
+
         const response = await api.get('/totalBalance.php', {
           headers: {
             Authorization: token,
           },
         });
-  
-        console.log("API response:", response.data); // Debug: Check API response
-  
+
         if (response.data.success) {
           return response.data.total_balance;
         } else {
           throw new Error(response.data.message);
         }
       } catch (error) {
-        console.error("Error fetching total balance:", error); // Debug: Log any errors
         return rejectWithValue(error.response?.data || 'Failed to fetch total balance');
       }
     }
